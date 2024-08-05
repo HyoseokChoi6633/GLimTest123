@@ -1,0 +1,27 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int solution(int n, int k) {
+    int answer = -1;
+    
+    const int LAMB_SKEWERS = 12000;
+    const int DRINK = 2000;
+    
+    int iBonurs = n / 10;
+    
+    if(n <= 0 || n >= 1000) {
+        return answer;
+    }
+    else if(k < iBonurs || k >= 1000) {
+        return answer;
+    }
+    else if(iBonurs < 0) {
+        return answer;
+    }
+    
+    answer = n * LAMB_SKEWERS + (k - iBonurs) * DRINK;
+    
+    return answer;
+}

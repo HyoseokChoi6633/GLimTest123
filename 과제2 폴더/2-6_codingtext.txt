@@ -1,0 +1,37 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+vector<int> solution(vector<int> arr, vector<int> query) {
+    vector<int> answer;
+
+    vector<int> vecTmp;
+
+    bool bLeft = true;
+
+    answer.insert(answer.begin(), arr.begin(), arr.end());
+
+    for (auto iQ : query) {
+        vector<int>::iterator itTargetPos(answer.begin() + iQ);
+
+        if (bLeft) {
+            for (auto it = answer.begin(); distance(it, itTargetPos) >= 0; ++it) {
+                vecTmp.push_back(*it);
+            }
+        }
+        else {
+            for (auto it = itTargetPos; it != answer.end(); ++it) {
+                vecTmp.push_back(*it);
+            }
+        }
+
+        answer.clear();
+        answer.insert(answer.begin(), vecTmp.begin(), vecTmp.end());
+        vecTmp.clear();
+
+        bLeft = !bLeft;
+    }
+
+    return answer;
+}

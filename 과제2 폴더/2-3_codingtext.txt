@@ -1,0 +1,24 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+vector<int> solution(vector<int> num_list, int n) {
+    vector<int> left;
+    vector<int> right;
+
+    vector<int>::iterator itTargetPos(num_list.begin() + n);
+
+    for(auto it = num_list.begin(); it != num_list.end(); ++it) {
+        if (distance(it, itTargetPos) > 0) {
+            left.push_back(*it);
+        }
+        else {
+            right.push_back(*it);
+        }
+    }
+
+    right.insert(right.end(), left.begin(), left.end());
+
+    return right;
+}

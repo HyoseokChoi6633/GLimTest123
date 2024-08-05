@@ -1,0 +1,75 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int solution(string my_string, string is_prefix) {
+    int answer = -1;
+
+    int i, j, k;
+    bool bMatch = false;
+
+    const int MYSTR_LEN = my_string.length();
+    const int PREFIXSTR_LEN = is_prefix.length();
+
+    if (MYSTR_LEN < 1 || MYSTR_LEN > 100) {
+        return answer;
+    }
+    else if (PREFIXSTR_LEN < 1 || PREFIXSTR_LEN > 100) {
+        return answer;
+    }
+
+    i = 0;
+    for (char ch : my_string) {
+        if (ch >= 'a' && ch <= 'z') {
+            j = i;
+            k = 0;
+            for (char prefix : is_prefix) {
+                if (prefix >= 'a' && prefix <= 'z') {
+                    if (j > k) {
+                        k++;
+                        continue;
+                    }
+
+                    if (ch != prefix) {
+                        answer = 0;
+                        bMatch = false;
+                        break;
+                    }
+                    else {
+                        bMatch = true;
+                        break;
+                    }
+                }
+                else {
+                    return answer;
+                }
+            }
+
+            if (!bMatch) {
+                break;
+            }
+            else {
+                i++;
+            }
+        }
+        else {
+            return answer;
+        }
+    }
+
+    if (bMatch) {
+        if (k != PREFIXSTR_LEN) {
+            answer = 0;
+        }
+        else {
+            answer = 1;
+        }
+
+    }
+    else {
+        answer = 0;
+    }
+
+    return answer;
+}

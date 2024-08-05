@@ -1,0 +1,25 @@
+#include <string>
+#include <vector>
+#include <cmath>
+
+using namespace std;
+
+int solution(int a, int b) {
+    int answer = 0;
+
+    string strA, strB;
+
+    strA = to_string(a);
+    strB = to_string(b);
+
+    int iALen = strA.length();
+    int iBLen = strB.length();
+    int iTmpVal;
+
+    iTmpVal = a * pow(10, iBLen) + b;
+    answer = b * pow(10, iALen) + a;
+
+    answer = iTmpVal > answer ? iTmpVal : answer;
+
+    return answer;
+}

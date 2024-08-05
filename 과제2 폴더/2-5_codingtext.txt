@@ -1,0 +1,30 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int solution(vector<vector<int>> board, int k) {
+    int answer = 0;
+
+    int i, j;
+
+    vector<vector<bool>> vecBRet;		// 필요 없는 코드
+
+    i = 0;
+    for (auto vecI : board) {
+        j = 0;
+        for (auto vecY : vecI) {
+            if (k >= i + j) {
+                answer += vecY;
+            }
+            j++;
+        }
+        i++;
+    }
+
+    if (i > 100 || j > 100) {
+        return -1;
+    }
+
+    return answer;
+}
